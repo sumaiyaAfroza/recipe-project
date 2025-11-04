@@ -1,7 +1,14 @@
 import React from 'react'
 import {createBrowserRouter, RouterProvider} from "react-router";
 import MainLayout from "./layout/MainLayout.jsx";
-import Home from "./Pages/Home.jsx";
+import {Home} from "./Pages/Home.jsx";
+import axios from "axios";
+
+const getAllRecipes  = async () => {
+  const res = await axios.get('http://localhost:5000/recipe')
+  return res.data.data
+}
+
 
 const router = createBrowserRouter([
   {
@@ -10,7 +17,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Home
+        Component: Home,
+        loader: getAllRecipes
       }
     ]
   }

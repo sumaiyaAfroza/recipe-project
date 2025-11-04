@@ -1,14 +1,17 @@
 import React, {useState} from 'react'
 import {motion} from 'framer-motion'
+import Modal from "../components/Modal.jsx";
+import InputFrom from "../components/inputFrom.jsx";
+import RecipeItems from "../components/RecipeItems.jsx";
 
 
-export default function Home() {
+export function Home() {
   const [isOpen, setIsOpen] = useState(false)
 
   const containerVariants = {
-    hidden : {opacity: 0},
+    hidden: {opacity: 0},
     visible: {
-      opacity : 1,
+      opacity: 1,
       transition: {
         staggerChildren: 0.3
       }
@@ -16,17 +19,18 @@ export default function Home() {
   }
 
   const itemVariants = {
-    hidden: {opacity : 0 , y: 20},
+    hidden: {opacity: 0, y: 20},
     visible: {
       opacity: 1,
       transition: {
         duration: 0.6,
         ease: 'easeOut'
-      }    }
+      }
+    }
   }
 
   const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8},
+    hidden: {opacity: 0, scale: 0.8},
     visible: {
       opacity: 1,
       scale: 1,
@@ -64,15 +68,16 @@ export default function Home() {
               className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl"
               variants={itemVariants}
             >
-              Discover and share amazing recipes from around the world. Join our community of food lovers and explore endless culinary possibilities that will inspire your next meal.
+              Discover and share amazing recipes from around the world. Join our community of food lovers and explore
+              endless culinary possibilities that will inspire your next meal.
             </motion.p>
 
             <motion.button
               onClick={() => setIsOpen(true)}
               className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
               variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{scale: 1.05}}
+              whileTap={{scale: 0.95}}
             >
               Share Your Recipe
             </motion.button>
@@ -87,8 +92,8 @@ export default function Home() {
               src='https://i.ibb.co.com/VYKKJswg/original.webp'
               alt="Food Recipe"
               className="w-full max-w-md lg:max-w-lg rounded-3xl shadow-2xl"
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              transition={{ duration: 0.3 }}
+              whileHover={{scale: 1.05, rotate: 2}}
+              transition={{duration: 0.3}}
             />
           </motion.div>
         </motion.div>
@@ -97,9 +102,9 @@ export default function Home() {
       {/* Wave Divider */}
       <div className="relative">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          initial={{opacity: 0}}
+          animate={{opacity: 1}}
+          transition={{duration: 1, delay: 0.5}}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -118,26 +123,26 @@ export default function Home() {
       {/* Modal */}
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)}>
-          <InputForm setIsOpen={() => setIsOpen(false)} />
+          <InputFrom setIsOpen={() => setIsOpen(false)}/>
         </Modal>
       )}
 
       {/* Recipe Items Section */}
       <motion.div
         className="container mx-auto px-4 py-16 bg-gradient-to-b from-emerald-50 to-white"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
+        transition={{duration: 0.8, delay: 0.3}}
       >
         <motion.h2
           className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          initial={{opacity: 0, y: 20}}
+          animate={{opacity: 1, y: 0}}
+          transition={{duration: 0.6, delay: 0.5}}
         >
           Popular Recipes
         </motion.h2>
-        {/*<RecipeItems />*/}
+        <RecipeItems />
       </motion.div>
     </div>
   )
